@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=example_pass
+      - POSTGRES_DB=jobber-auth
+    volumes:
+      - jobber-auth-db:/var/lib/postgresql/data
