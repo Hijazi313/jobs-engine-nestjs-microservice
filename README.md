@@ -23,3 +23,11 @@ Generate Migrations from schema
 ```
 nx migrate-prisma service_name
 ```
+
+### Tests
+
+Run tests of a service
+
+```
+nx test service_name
+```

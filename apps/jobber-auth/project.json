@@ -12,12 +12,14 @@
         "command": "webpack-cli build",
         "args": ["--node-env=production"]
       },
+
       "configurations": {
         "development": {
           "args": ["--node-env=development"]
         }
       }
     },
+
     "serve": {
       "continuous": true,
       "executor": "@nx/js:node",
@@ -51,7 +53,8 @@
     "test": {
       "options": {
         "passWithNoTests": true
-      }
+      },
+      "dependsOn": ["generate-types"]
     }
   }
 }
