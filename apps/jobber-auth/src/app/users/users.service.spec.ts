@@ -16,10 +16,4 @@ describe('UsersService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
-
-  // describe('getUsers', () => {
-  //   it('should return "Hello API"', () => {
-  //     expect(service.getUsers()).toEqual([]);
-  //   });
-  // });
 });
