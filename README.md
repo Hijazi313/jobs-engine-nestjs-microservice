@@ -1,5 +1,11 @@
 ## Commands
 
+### Create New Nest Application/microservice
+
+```
+nx g application micro-service-name
+```
+
 ### Run project and apps
 
 Run single service by name
