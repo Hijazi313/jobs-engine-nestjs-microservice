@@ -19,7 +19,7 @@ async function bootstrap() {
   const port = app.get(ConfigService).getOrThrow<number>('PORT');
   await app.listen(port);
   Logger.log(
-    `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
+    `🚀 Auth Application is running on: http://localhost:${port}/${globalPrefix}`
   );
 }
 
