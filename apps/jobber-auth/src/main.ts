@@ -17,6 +17,11 @@ async function bootstrap() {
   Logger.log(
     `🚀 Auth Application is running on: http://localhost:${port}/${globalPrefix}`
   );
+
+  process.on('SIGINT', async () => {
+    await app.close();
+    process.exit(0);
+  });
 }
 
 bootstrap();

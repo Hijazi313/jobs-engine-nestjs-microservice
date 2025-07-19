@@ -11,6 +11,13 @@ nx g application micro-service-name
 Run single service by name
 
 ```
+OR
+
+```
+
+NX_STREAM_OUTPUT=true nx run app-name:serve
+
+```
 nx serve app_name
 ```
 
