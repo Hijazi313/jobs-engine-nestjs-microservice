@@ -1,0 +1,24 @@
+import {
+  AuthenticateRequest,
+  AuthServiceController,
+  AuthServiceControllerMethods,
+  User,
+} from 'types/proto/auth';
+import { Controller, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { UsersService } from '../users/users.service';
+import { ITokenPayload } from './token-payload.interface';
+
+@Controller()
+@AuthServiceControllerMethods()
+export class AuthController implements AuthServiceController {
+  constructor(private readonly usersService: UsersService) {}
+  @UseGuards(JwtAuthGuard)
+  authenticate(
+    request: AuthenticateRequest & { user: ITokenPayload }
+  ): Promise<User> {
+    return this.usersService.getUser({ id: request.user.userId });
+    console.log(request);
+    return {} as any;
+  }
+}

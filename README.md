@@ -19,6 +19,7 @@ NX_STREAM_OUTPUT=true nx run app-name:serve
 
 ```
 nx serve app_name
+nx run-many --target=serve --projects=jobber-auth,jobber-jobs
 ```
 
 ### Databases

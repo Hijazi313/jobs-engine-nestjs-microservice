@@ -13,11 +13,9 @@ export class JobsService implements OnModuleInit {
   constructor(private readonly discoveryService: DiscoveryService) {}
 
   async onModuleInit() {
-    console.log('first');
-    this.jobs =
-      await this.discoveryService.providersWithMetaAtKey<IJobMetadata>(
-        JOB_METADATA_KEY
-      );
+    await this.discoveryService.providersWithMetaAtKey<IJobMetadata>(
+      JOB_METADATA_KEY
+    );
     // this.jobs = providers.map((provider) => provider.discoveredClass);
     // console.log(this.jobs);
   }
