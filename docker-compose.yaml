@@ -1,12 +1,48 @@
 version: '3.8'
 services:
-  postgres:
-    image: postgres
+  # postgres:
+  #   image: postgres
+  #   ports:
+  #     - 5432:5432
+  #   environment:
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=example_pass
+  #     - POSTGRES_DB=jobber-auth
+  #   volumes:
+  #     - jobber-auth-db:/var/lib/postgresql/data
+
+  pulsar:
+    image: apachepulsar/pulsar:latest
+    command: >
+      /pulsar/bin/pulsar standalone
     ports:
-      - 5432:5432
+      - 6650:6650
+    networks:
+      - pulsar-network
+    #   - 8080:8080
+    # environment:
+    #   - PULSAR_MEM=4g
+    #   - PULSAR_BROKER_CONF_brokerServicePort=6650
+    #   - PULSAR_BROKER_CONF_advertisedAddress=pulsar://localhost:6650
+    #   - PULSAR_BROKER_CONF_advertisedListeners=pulsar://localhost:6650
+
+  #  pulsar manager
+  pulsar-manager:
+    image: apachepulsar/pulsar-manager:latest
+    container_name: pulsar-manager
+    depends_on:
+      - pulsar
+    ports:
+      - 9527:9527
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=example_pass
-      - POSTGRES_DB=jobber-auth
-    volumes:
-      - jobber-auth-db:/var/lib/postgresql/data
+      - PULSAR_BROKER_SERVICE_URL=pulsar://pulsar:6650
+      - PULSAR_MANAGER_WEB_SERVICE_URL=http://pulsar-manager:9000
+      - PULSAR_MANAGER_WEB_SERVICE_PORT=9527
+      - PULSAR_MANAGER_WEB_SERVICE_HOST=0.0.0.0
+      - SPRING_CONFIGURATION_FILE=/pulsar-manager/pulsar-manager/application.properties
+    networks:
+      - pulsar-network
+
+networks:
+  pulsar-network:
+    driver: bridge
