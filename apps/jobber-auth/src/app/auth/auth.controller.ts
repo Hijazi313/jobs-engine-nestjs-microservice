@@ -17,8 +17,8 @@ export class AuthController implements AuthServiceController {
   authenticate(
     request: AuthenticateRequest & { user: ITokenPayload }
   ): Promise<User> {
+    console.log(request.user);
     return this.usersService.getUser({ id: request.user.userId });
-    console.log(request);
     return {} as any;
   }
 }

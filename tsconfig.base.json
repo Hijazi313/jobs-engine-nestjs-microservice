@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@jobber-microservice/nestjs": ["libs/nestjs/src/index.ts"]
+      "@jobber-microservice/nestjs": ["libs/nestjs/src/index.ts"],
+      "@jobber-microservice/pulsar": ["libs/pulsar/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

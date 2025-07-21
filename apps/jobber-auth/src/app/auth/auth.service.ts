@@ -7,7 +7,7 @@ import { User } from '../users/models/user.model';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { ITokenPayload } from './token-payload.interface';
-import { AuthenticateRequest } from 'types/proto/auth';
+// import { AuthenticateRequest } from 'types/proto/auth';
 
 @Injectable()
 export class AuthService {
@@ -42,19 +42,19 @@ export class AuthService {
     return user;
   }
 
-  private async authenticate(request: AuthenticateRequest): Promise<User> {
-    try {
-      // Verify the JWT token
-      const payload = this.jwtService.verify<ITokenPayload>(request.token);
+  // private async authenticate(request: AuthenticateRequest): Promise<User> {
+  //   try {
+  //     // Verify the JWT token
+  //     const payload = this.jwtService.verify<ITokenPayload>(request.token);
 
-      // Get user by ID from the token payload
-      const user = await this.usersService.getUser({ id: payload.userId });
+  //     // Get user by ID from the token payload
+  //     const user = await this.usersService.getUser({ id: payload.userId });
 
-      return user;
-    } catch (error) {
-      throw new UnauthorizedException('Invalid token');
-    }
-  }
+  //     return user;
+  //   } catch (error) {
+  //     throw new UnauthorizedException('Invalid token');
+  //   }
+  // }
 
   private async verifyUser(email: string, password: string) {
     try {

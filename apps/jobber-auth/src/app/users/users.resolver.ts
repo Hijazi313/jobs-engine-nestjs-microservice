@@ -21,7 +21,7 @@ export class UsersResolver {
   @UseGuards(GqlAuthGuard)
   @Query(() => [User], { name: 'users' })
   async users(@CurrentUser() user: ITokenPayload): Promise<User[]> {
-    console.log(user);
+    //console.log(user);
     return this.usersService.getUsers();
   }
 }
