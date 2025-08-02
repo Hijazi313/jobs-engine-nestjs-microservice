@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky",
-    "generate-ts-proto": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./types ./proto/*.proto --ts_proto_opt=nestJs=true"
+    "start": "nx run-many -t serve -p jobber-auth,jobber-jobs,jobber-executor --output-style=stream",
+    "generate-ts-proto": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./types ./proto/*.proto --ts_proto_opt=nestJs=true",
+    "dev": "concurrently -n auth,jobs,exec -c green,magenta,cyan     \"PORT=3000 nx serve jobber-auth\"     \"PORT=3001 nx serve jobber-jobs\"     \"PORT=3002 nx serve jobber-executor\""
   },
   "nx": {
     "targets": {
@@ -37,7 +39,9 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.2",
     "cookie-parser": "^1.4.7",
+    "fibonacci": "^1.6.12",
     "graphql": "^16.11.0",
+    "graphql-type-json": "^0.3.2",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "pulsar-client": "^1.14.0",
@@ -65,6 +69,7 @@
     "@types/jest": "^29.5.12",
     "@types/node": "~18.16.9",
     "@types/passport-jwt": "^4.0.1",
+    "concurrently": "^9.2.0",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
     "husky": "^9.1.7",
