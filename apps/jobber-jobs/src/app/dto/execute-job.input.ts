@@ -8,7 +8,6 @@ export class ExecuteJobInput {
   name: string;
 
   @Field(() => JSON)
-  @IsObject()
   @IsNotEmpty()
-  data: object;
+  data: object | object[];
 }

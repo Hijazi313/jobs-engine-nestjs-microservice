@@ -27,21 +27,21 @@ services:
     #   - PULSAR_BROKER_CONF_advertisedListeners=pulsar://localhost:6650
 
   #  pulsar manager
-  pulsar-manager:
-    image: apachepulsar/pulsar-manager:latest
-    container_name: pulsar-manager
-    depends_on:
-      - pulsar
-    ports:
-      - 9527:9527
-    environment:
-      - PULSAR_BROKER_SERVICE_URL=pulsar://pulsar:6650
-      - PULSAR_MANAGER_WEB_SERVICE_URL=http://pulsar-manager:9000
-      - PULSAR_MANAGER_WEB_SERVICE_PORT=9527
-      - PULSAR_MANAGER_WEB_SERVICE_HOST=0.0.0.0
-      - SPRING_CONFIGURATION_FILE=/pulsar-manager/pulsar-manager/application.properties
-    networks:
-      - pulsar-network
+  # pulsar-manager:
+  #   image: apachepulsar/pulsar-manager:latest
+  #   container_name: pulsar-manager
+  #   depends_on:
+  #     - pulsar
+  #   ports:
+  #     - 9527:9527
+  #   environment:
+  #     - PULSAR_BROKER_SERVICE_URL=pulsar://pulsar:6650
+  #     - PULSAR_MANAGER_WEB_SERVICE_URL=http://pulsar-manager:9000
+  #     - PULSAR_MANAGER_WEB_SERVICE_PORT=9527
+  #     - PULSAR_MANAGER_WEB_SERVICE_HOST=0.0.0.0
+  #     - SPRING_CONFIGURATION_FILE=/pulsar-manager/pulsar-manager/application.properties
+  #   networks:
+  #     - pulsar-network
 
 networks:
   pulsar-network:
