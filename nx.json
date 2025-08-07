@@ -37,9 +37,9 @@
         "targetName": "test"
       },
       "exclude": [
-        "apps/jobber-auth-e2e/**/*",
-        "apps/jobber-jobs-e2e/**/*",
-        "apps/jobber-executor-e2e/**/*"
+        "apps/auth-e2e/**/*",
+        "apps/jobs-e2e/**/*",
+        "apps/executor-e2e/**/*"
       ]
     }
   ],

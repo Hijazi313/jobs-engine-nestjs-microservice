@@ -7,9 +7,9 @@ services:
   #   environment:
   #     - POSTGRES_USER=postgres
   #     - POSTGRES_PASSWORD=example_pass
-  #     - POSTGRES_DB=jobber-auth
+  #     - POSTGRES_DB=auth
   #   volumes:
-  #     - jobber-auth-db:/var/lib/postgresql/data
+  #     - auth-db:/var/lib/postgresql/data
 
   pulsar:
     image: apachepulsar/pulsar:latest

@@ -4,9 +4,10 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky",
-    "start": "nx run-many -t serve -p jobber-auth,jobber-jobs,jobber-executor --output-style=stream",
+    "start": "nx run-many -t serve -p auth,jobs,executor --output-style=stream",
     "generate-ts-proto": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./types ./proto/*.proto --ts_proto_opt=nestJs=true",
-    "dev": "concurrently -n auth,jobs,exec -c green,magenta,cyan     \"PORT=3000 nx serve jobber-auth\"     \"PORT=3001 nx serve jobber-jobs\"     \"PORT=3002 nx serve jobber-executor\""
+    "dev": "concurrently -n auth,jobs,exec -c green,magenta,cyan     \"PORT=3000 nx serve auth\"     \"PORT=3001 nx serve jobs\"     \"PORT=3002 nx serve executor\"",
+    "start:dev": "concurrently -n auth,jobs,exec -c green,magenta,cyan     \"PORT=3000 nx serve auth\"     \"PORT=3001 nx serve jobs\"     \"PORT=3002 nx serve executor\""
   },
   "nx": {
     "targets": {
@@ -18,6 +19,10 @@
       }
     }
   },
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
   "private": true,
   "dependencies": {
     "@apollo/server": "^4.12.2",
