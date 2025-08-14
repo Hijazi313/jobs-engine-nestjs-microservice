@@ -8,13 +8,6 @@ import { init } from '@jobber-microservice/nestjs';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // const globalPrefix = 'api';
-  // app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
-  // app.setGlobalPrefix(globalPrefix);
-  // app.use(cookieParser());
-  // const configService = app.get(ConfigService);
-  // const port = configService.get<number>('PORT') || 3000;
-
   await init(app);
 
   // Listen GRPC server

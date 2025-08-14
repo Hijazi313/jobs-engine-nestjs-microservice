@@ -17,7 +17,10 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
+      "@jobber-microservice/graphql": ["libs/graphql/src/index.ts"],
+      "@jobber-microservice/grpc": ["libs/grpc/src/index.ts"],
       "@jobber-microservice/nestjs": ["libs/nestjs/src/index.ts"],
+      "@jobber-microservice/prisma": ["libs/prisma/src/index.ts"],
       "@jobber-microservice/pulsar": ["libs/pulsar/src/index.ts"]
     }
   },
