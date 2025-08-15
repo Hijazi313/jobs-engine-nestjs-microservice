@@ -45,3 +45,5 @@ Run tests of a service
 ```
 nx test service_name
 ```
+
+delete prisma and @prisma/client from root package.json

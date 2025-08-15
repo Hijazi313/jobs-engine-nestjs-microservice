@@ -5,19 +5,9 @@
   "scripts": {
     "prepare": "husky",
     "start": "nx run-many -t serve -p auth,jobs,executor --output-style=stream",
-    "generate-ts-proto": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./types ./proto/*.proto --ts_proto_opt=nestJs=true",
     "dev": "concurrently -n auth,jobs,exec -c green,magenta,cyan     \"PORT=3000 nx serve auth\"     \"PORT=3001 nx serve jobs\"     \"PORT=3002 nx serve executor\"",
-    "start:dev": "concurrently -n auth,jobs,exec -c green,magenta,cyan     \"PORT=3000 nx serve auth\"     \"PORT=3001 nx serve jobs\"     \"PORT=3002 nx serve executor\""
-  },
-  "nx": {
-    "targets": {
-      "generate-ts-proto": {
-        "inputs": [
-          "{workspaceRoot}/proto/*.proto"
-        ],
-        "cache": true
-      }
-    }
+    "start:dev": "concurrently -n auth,jobs,exec -c green,magenta,cyan     \"PORT=3000 nx serve auth\"     \"PORT=3001 nx serve jobs\"     \"PORT=3002 nx serve executor\"",
+    "build:libs": "nx run-many --target=build  --projects=graphql,prisma,grpc,nestjs,pulsar"
   },
   "workspaces": [
     "apps/*",

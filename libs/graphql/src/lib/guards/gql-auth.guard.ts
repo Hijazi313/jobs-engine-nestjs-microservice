@@ -13,7 +13,7 @@ import {
   AUTH_PACKAGE_NAME,
   AuthServiceClient,
   AUTH_SERVICE_NAME,
-} from 'types/proto/auth';
+} from '@jobber-microservice/grpc';
 
 @Injectable()
 export class GqlAuthGuard implements CanActivate, OnModuleInit {
