@@ -6,7 +6,7 @@
   "tags": [],
   "targets": {
     "build": {
-      "dependsOn": ["generate-prisma"],
+      "dependsOn": ["generate-prisma", "^build"],
       "executor": "nx:run-commands",
       "options": {
         "command": "webpack-cli build",
@@ -51,9 +51,6 @@
       "options": {
         "cwd": "{projectRoot}"
       }
-    },
-    "generate-ts-proto": {
-      "command": "nx generate-ts-proto"
     },
     "test": {
       "options": {
