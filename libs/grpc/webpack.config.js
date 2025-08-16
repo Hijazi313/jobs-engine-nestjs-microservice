@@ -4,6 +4,10 @@ const { join } = require('path');
 module.exports = {
   output: {
     path: join(__dirname, '../../dist/libs/grpc'),
+    libraryTarget: 'commonjs2',
+    // library: {
+    //   type: 'commonjs2',
+    // },
   },
   plugins: [
     new NxAppWebpackPlugin({

@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "prepare": "husky",
     "start": "nx run-many -t serve -p auth,jobs,executor --output-style=stream",
     "dev": "concurrently -n auth,jobs,exec -c green,magenta,cyan     \"PORT=3000 nx serve auth\"     \"PORT=3001 nx serve jobs\"     \"PORT=3002 nx serve executor\"",
     "start:dev": "concurrently -n auth,jobs,exec -c green,magenta,cyan     \"PORT=3000 nx serve auth\"     \"PORT=3001 nx serve jobs\"     \"PORT=3002 nx serve executor\"",
@@ -37,12 +36,20 @@
     "fibonacci": "^1.6.12",
     "graphql": "^16.11.0",
     "graphql-type-json": "^0.3.2",
+    "module-alias": "^2.2.3",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "pulsar-client": "^1.14.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
     "ts-proto": "^2.7.5"
+  },
+  "_moduleAliases": {
+    "@jobber-microservice/grpc": "dist/libs/grpc/main.js",
+    "@jobber-microservice/graphql": "dist/libs/graphql/main.js",
+    "@jobber-microservice/nestjs": "dist/libs/nestjs/main.js",
+    "@jobber-microservice/prisma": "dist/libs/prisma/main.js",
+    "@jobber-microservice/pulsar": "dist/libs/pulsar/main.js"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
