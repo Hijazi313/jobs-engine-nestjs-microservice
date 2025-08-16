@@ -1,20 +1,9 @@
-const { NxAppWebpackPlugin } = require('@nx/webpack/app-plugin');
 const { join } = require('path');
+const { merge } = require('webpack-merge');
+const webpackLibConfig = require('../../webpack.lib.config');
 
-module.exports = {
+module.exports = merge(webpackLibConfig, {
   output: {
     path: join(__dirname, '../../dist/libs/prisma'),
-    libraryTarget: 'commonjs2',
   },
-  plugins: [
-    new NxAppWebpackPlugin({
-      target: 'node',
-      compiler: 'tsc',
-      main: './src/index.ts',
-      tsConfig: './tsconfig.lib.json',
-      optimization: false,
-      outputHashing: 'none',
-      generatePackageJson: true,
-    }),
-  ],
-};
+});
