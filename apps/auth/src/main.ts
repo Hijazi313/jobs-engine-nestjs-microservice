@@ -7,7 +7,7 @@ import { join } from 'node:path';
 import { init } from '@jobber-microservice/nestjs';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { bufferLogs: true });
 
   await init(app);
 

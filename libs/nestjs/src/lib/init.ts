@@ -1,18 +1,22 @@
 import { ConfigService } from '@nestjs/config';
-import { INestApplication, Logger, ValidationPipe } from '@nestjs/common';
+import { Logger } from 'nestjs-pino';
+import { INestApplication, ValidationPipe } from '@nestjs/common';
 import cookieParser from 'cookie-parser';
 
 export async function init(app: INestApplication) {
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+  app.useLogger(app.get(Logger));
   app.use(cookieParser());
 
   const configService = app.get(ConfigService);
 
   const port = configService.getOrThrow<number>('PORT');
   await app.listen(port);
-  Logger.log(
-    `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
-  );
+  app
+    .get(Logger)
+    .log(
+      `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
+    );
 }
