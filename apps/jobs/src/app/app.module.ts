@@ -5,6 +5,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { LoggerModule } from '@jobber-microservice/nestjs';
 import { GqlLoggingPlugin } from '@jobber-microservice/graphql';
+import { UploadsModule } from './uploads/uploads.module';
 @Module({
   imports: [
     LoggerModule,
@@ -22,6 +23,7 @@ import { GqlLoggingPlugin } from '@jobber-microservice/graphql';
       },
     }),
     JobsModule,
+    UploadsModule,
   ],
 })
 export class AppModule {}

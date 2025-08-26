@@ -1,0 +1,82 @@
+global:
+  imagePullPolicy: Always
+  imagePullSecrets:
+    - name: ecr-creds
+
+pulsar:
+  enabled: true
+  namespace: pulsar
+  namespaceCreate: true
+  zookeeper:
+    replicaCount: 1
+    podMonitor:
+      enabled: false
+  broker:
+    replicaCount: 1
+    podMonitor:
+      enabled: false
+  bookkeeper:
+    replicaCount: 1
+    podMonitor:
+      enabled: false
+  autorecovery:
+    podMonitor:
+      enabled: false
+  proxy:
+    replicaCount: 1
+    podMonitor:
+      enabled: false
+  kube-prometheus-stack:
+    enabled: true
+    prometheusOperator:
+      enabled: true
+    grafana:
+      enabled: false
+    alertmanager:
+      enabled: false
+    prometheus:
+      enabled: false
+
+postgresql:
+  namespaceOverride: postgresql
+  enabled: true
+  auth:
+    username: postgres
+    password: postgres
+    database: jobber
+
+
+
+jobs:
+  enabled: true
+  replicas: 1
+  image: 536697247379.dkr.ecr.eu-north-1.amazonaws.com/jobber/jobs:latest
+  imagePullPolicy: Always
+  port: 3001
+
+executor:
+  enabled: true
+  replicas: 1
+  image: 536697247379.dkr.ecr.eu-north-1.amazonaws.com/jobber/executor:latest
+  imagePullPolicy: Always
+  port: 3002
+  env: 
+    - name: PULSAR_SERVICE_URL
+      value: pulsar://pulsar-proxy.pulsar.svc.cluster.local:6650
+
+auth:
+  enabled: true
+  replicas: 1
+  image: 536697247379.dkr.ecr.eu-north-1.amazonaws.com/jobber/auth:latest
+  imagePullPolicy: Always
+  port:
+    http: 3000
+    grpc: 5000
+  jwt:
+    secret: OaMsd9tvSRrPcbFvst87ne26684gbhuT
+    expirationMs: "28800000"
+
+
+
+imagePullSecrets:
+  - name: ecr-creds

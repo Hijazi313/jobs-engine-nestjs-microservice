@@ -46,3 +46,5 @@ Thumbs.db
 
 # environment variables
 .env
+
+apps/jobs/uploads/*
