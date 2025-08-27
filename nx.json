@@ -39,7 +39,8 @@
       "exclude": [
         "apps/auth-e2e/**/*",
         "apps/jobs-e2e/**/*",
-        "apps/executor-e2e/**/*"
+        "apps/executor-e2e/**/*",
+        "apps/products-e2e/**/*"
       ]
     }
   ]
