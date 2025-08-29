@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx run-many -t serve -p auth,jobs,executor --output-style=stream",
-    "dev": "concurrently -n auth,jobs,exec -c green,magenta,cyan     \"PORT=3000 nx serve auth\"     \"PORT=3001 nx serve jobs\"     \"PORT=3002 nx serve executor\"",
+    "start": "nx run-many -t serve -p auth jobs executor products --parallel 4 ",
+    "dev": "concurrently -n auth,jobs,exec -c green,magenta,cyan     \"PORT=3000 nx serve auth\"     \"PORT=3001 nx serve jobs\"     \"PORT=3002 nx serve executor\" \"PORT=3003 nx serve products\"",
     "start:dev": "concurrently -n auth,jobs,exec -c green,magenta,cyan     \"PORT=3000 nx serve auth\"     \"PORT=3001 nx serve jobs\"     \"PORT=3002 nx serve executor\"",
     "build:libs": "nx run-many --target=build  --projects=graphql,prisma,grpc,nestjs,pulsar"
   },
