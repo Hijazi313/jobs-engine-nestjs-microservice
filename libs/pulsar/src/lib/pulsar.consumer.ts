@@ -1,6 +1,6 @@
 import { Consumer, Message } from 'pulsar-client';
 import { PulsarClient } from './pulsar.client';
-import { Logger, OnModuleInit } from '@nestjs/common';
+import { Logger } from '@nestjs/common';
 import { deserialize } from './serialize';
 
 //what this class is doing and why is it abstract and onMessage
@@ -24,6 +24,8 @@ export abstract class PulsarConsumer<T> {
     try {
       const data = deserialize<T>(message.getData());
       this.logger.debug(`Received message: ${JSON.stringify(data)}`);
+      this.onMessage(data);
+      // await this.c.onMessage(data);
     } catch (error) {
       this.logger.error(error);
     } finally {

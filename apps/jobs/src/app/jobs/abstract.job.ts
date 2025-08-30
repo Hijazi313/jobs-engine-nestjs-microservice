@@ -18,29 +18,29 @@ export abstract class AbstractJob<T extends object> {
     }
     if (Array.isArray(data)) {
       for (const message of data) {
-        await this.validateData(message);
-        await this.send(message);
+        this.send(message);
       }
-    } else {
-      await this.validateData(data);
-      await this.send(data);
+      return;
     }
+    this.send(data);
     // await this.producer.send({
     //   data: serialize(data),
     // });
   }
 
-  async send(data: T) {
-    return this.producer.send({
-      data: serialize(data),
-    });
+  private send(data: T) {
+    this.validateData(data).then(() =>
+      this.producer.send({
+        data: serialize(data),
+      })
+    );
   }
 
   private async validateData(data: T) {
-    console.log({ data });
+    // console.log({ data: data. });
     const instance = plainToInstance(this.messageClass, data);
     const errors = await validate(instance);
-    console.log({ errors, instance });
+    // console.log({ errors, instance });
     if (errors.length > 0) {
       throw new BadRequestException(errors.toString());
     }

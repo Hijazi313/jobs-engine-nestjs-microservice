@@ -23,4 +23,9 @@ export class LoadProductsMessage {
   @IsString()
   @IsNotEmpty()
   description: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  @Min(0)
+  stock: number;
 }

@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { FibonacciConsumer } from './fibonacci/fibonacci.consumer';
 import { PulsarModule } from '@jobber-microservice/pulsar';
+import { LoadProductsModule } from './products/load-products.module';
 
 @Module({
-  imports: [PulsarModule],
+  imports: [PulsarModule, LoadProductsModule],
   providers: [FibonacciConsumer],
 })
 export class JobsModule {}

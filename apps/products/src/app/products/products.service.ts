@@ -16,6 +16,7 @@ export class ProductsService {
       'id' | 'createdAt' | 'updatedAt'
     >
   ) {
+    console.log({ product });
     return this.db.insert(productsSchema.products).values(product).returning();
   }
 }

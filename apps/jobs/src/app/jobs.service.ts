@@ -21,6 +21,7 @@ export class JobsService implements OnModuleInit {
   constructor(private readonly discoveryService: DiscoveryService) {}
 
   async onModuleInit() {
+    console.log({ JOB_METADATA_KEY });
     this.jobs =
       await this.discoveryService.providersWithMetaAtKey<IJobMetadata>(
         // await this.discoveryService.providersWithMetaAtKey<AbstractJob>(
@@ -34,7 +35,7 @@ export class JobsService implements OnModuleInit {
   }
 
   async executeJob(name: string, data: any) {
-    console.log('this.jobs');
+    // console.log('this.jobs');
     const job = this.jobs.find((job) => job.meta.name === name);
     if (!job) {
       throw new BadRequestException(`Job ${name} not found`);
